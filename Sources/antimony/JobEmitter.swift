@@ -49,6 +49,12 @@ public struct JobEmitter {
 #elseif arch(x86_64)
     let triple: String = "x86_64-unknown-linux-gnu"
 #endif
+#elseif os(macOS)
+#if arch(arm64)
+    let triple: String = "arm64-apple-macosx13.0"
+#elseif arch(x86_64)
+    let triple: String = "x86_64-apple-macosx13.0"
+#endif
 #endif
 
     let module: RelativePath =

@@ -12,6 +12,8 @@ _ = Package(name: "antimony",
             dependencies: [
               .package(url: "https://github.com/apple/swift-argument-parser",
                        from: "1.2.0"),
+              .package(url: "https://github.com/apple/swift-collections",
+                       branch: "main"),
               .package(url: "https://github.com/apple/swift-driver",
                        branch: "main"),
             ],
@@ -21,6 +23,9 @@ _ = Package(name: "antimony",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
               ], path: "Tools/sb"),
               .target(name: "BUILDParser", dependencies: [
+                .product(name: "DequeModule", package: "swift-collections"),
+              ], swiftSettings: [
+                .enableExperimentalFeature("AccessLevelOnImport"),
               ]),
               .target(name: "antimony", dependencies: [
                 .product(name: "SwiftDriver", package: "swift-driver"),

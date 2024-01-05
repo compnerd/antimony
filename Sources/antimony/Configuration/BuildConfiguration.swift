@@ -13,7 +13,7 @@ public class BuildConfiguration {
   private func repo() throws -> URL? {
     var root = URL(fileURLWithPath: fs.currentDirectoryPath)
     repeat {
-      if fs.fileExists(atPath: root.appendingPathComponent(".sb").path) {
+      if fs.fileExists(atPath: root.appendingPathComponent("WORKSPACE").path) {
         return root
       }
       root.deleteLastPathComponent()
@@ -26,7 +26,7 @@ public class BuildConfiguration {
 
   public func load(_ options: BuildConfigurationOptions,
                    for operation: Operation) async throws {
-    self.loader = LegacyLoader_DO_NOT_USE_OR_YOU_WILL_BE_FIRED(self)
+    self.loader = AntimonyLoader(self)
     guard let loader else { return }
 
     guard let root = try options.root?.url ?? repo() else {
@@ -36,8 +36,7 @@ public class BuildConfiguration {
     let out = URL(fileURLWithPath: options.location, isDirectory: true,
                   relativeTo: URL(fileURLWithPath: fs.currentDirectoryPath))
 
-    try loader.load(URL(fileURLWithPath: "placeholder.json", relativeTo: root),
-                    root: root)
+    try loader.load(URL(fileURLWithPath: "BUILD.gn", relativeTo: root), root: root)
 
     switch operation {
     case .format:

@@ -5,6 +5,8 @@ import class Foundation.JSONDecoder
 import struct Foundation.Data
 import struct Foundation.URL
 
+private import BUILDEvaluator
+
 public enum Operation {
   case format
   case generate
@@ -117,5 +119,19 @@ public class LegacyLoader_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: Loader {
         self.delegate?.resolved(label: label, to: target)
       }
     }
+  }
+}
+
+public class AntimonyLoader: Loader {
+  public weak var delegate: BuildConfigurationDelegate?
+
+  public required init(_ delegate: BuildConfigurationDelegate) {
+    self.delegate = delegate
+  }
+
+  public func load(_ file: URL, root: URL) throws {
+    let scope =
+        try process(directory: file.deletingLastPathComponent(), rules: file)
+print(scope.modules)
   }
 }

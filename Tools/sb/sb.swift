@@ -8,7 +8,7 @@ import struct Foundation.URL
 
 private struct Format: AsyncParsableCommand {
   static var configuration: CommandConfiguration {
-    CommandConfiguration(commandName: "format", abstract: "Format .sb files")
+    CommandConfiguration(commandName: "format", abstract: "Format BUILD files")
   }
 
   @OptionGroup

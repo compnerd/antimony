@@ -37,8 +37,12 @@ _ = Package(name: "antimony",
                 "BUILD.gn",
               ]),
               .target(name: "antimony", dependencies: [
+                "BUILDParser",
+                "BUILDEvaluator",
                 .product(name: "SwiftDriver", package: "swift-driver"),
               ], exclude: [
                 "BUILD.gn",
+              ], swiftSettings: [
+                .enableExperimentalFeature("AccessLevelOnImport"),
               ])
            ])

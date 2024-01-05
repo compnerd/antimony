@@ -20,6 +20,8 @@ _ = Package(name: "antimony",
                 "antimony",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
               ], path: "Tools/sb"),
+              .target(name: "BUILDParser", dependencies: [
+              ]),
               .target(name: "antimony", dependencies: [
                 .product(name: "SwiftDriver", package: "swift-driver"),
               ])

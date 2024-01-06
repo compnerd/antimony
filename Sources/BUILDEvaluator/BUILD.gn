@@ -1,0 +1,22 @@
+
+static_library("BUILDEvaluator") {
+  sources = [
+    "Builtins.swift",
+    "Evaluator.swift",
+    "ExecutionError.swift",
+    "Expression+Evaluator.swift",
+    "Module.swift",
+    "ModuleBlueprint.swift",
+    "Modules.swift",
+    "Scope.swift",
+    "Template.swift",
+    "Value.swift",
+    "Variables.swift",
+    "Extensions/SourceRange+Extensions.swift",
+    "Extensions/URL+Extensions.swift"
+  ]
+
+  deps = [
+    "//Sources/BUILDParser"
+  ]
+}

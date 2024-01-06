@@ -1,0 +1,24 @@
+
+static_library("BUILDParser") {
+  sources = [
+    "Extensions/Collections+Extensions.swift",
+    "Extensions/StringProtocol+Extensions.swift",
+    "Extensions/URL+Extensions.swift",
+    "AST.swift",
+    "ASTNodes.swift",
+    "Diagnostic.swift",
+    "DiagnosticSet.swift",
+    "Lexer.swift",
+    "Parser.swift",
+    "Parser+Diagnostics.swift",
+    "ParserState.swift",
+    "SourceFile.swift",
+    "SourceLocation.swift",
+    "SourceRange.swift",
+    "Token.swift",
+  ]
+
+  deps = [
+    "//third_party/swift-collections/Sources/DequeModule",
+  ]
+}

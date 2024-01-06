@@ -1,0 +1,65 @@
+
+assert("${host_os}" == "windows", "antimony has not been ported to ${host_os}")
+
+static_library("BUILDParser") {
+  sources = [
+    "Sources/BUILDParser/Extensions/Collections+Extensions.swift",
+    "Sources/BUILDParser/Extensions/StringProtocol+Extensions.swift",
+    "Sources/BUILDParser/Extensions/URL+Extensions.swift",
+    "Sources/BUILDParser/AST.swift",
+    "Sources/BUILDParser/ASTNodes.swift",
+    "Sources/BUILDParser/Diagnostic.swift",
+    "Sources/BUILDParser/DiagnosticSet.swift",
+    "Sources/BUILDParser/Lexer.swift",
+    "Sources/BUILDParser/Parser.swift",
+    "Sources/BUILDParser/Parser+Diagnostics.swift",
+    "Sources/BUILDParser/ParserState.swift",
+    "Sources/BUILDParser/SourceFile.swift",
+    "Sources/BUILDParser/SourceLocation.swift",
+    "Sources/BUILDParser/SourceRange.swift",
+    "Sources/BUILDParser/Token.swift",
+  ]
+
+  deps = [
+    "@swift-collections//:DequeModule",
+  ]
+}
+
+static_library("antimony") {
+  sources = [
+    "Sources/antimony/Configuration/BuildConfiguration.swift",
+    "Sources/antimony/Configuration/BuildConfigurationDelegate.swift",
+    "Sources/antimony/Configuration/BuildConfigurationOptions.swift",
+    "Sources/antimony/Configuration/Label.swift",
+    "Sources/antimony/Configuration/Loader.swift",
+    "Sources/antimony/Configuration/Target.swift",
+    "Sources/antimony/Extensions/SwiftDriver+Extensions.swift",
+    "Sources/antimony/Utils/FileURL.swift",
+    "Sources/antimony/Error.swift",
+    "Sources/antimony/JobEmitter.swift",
+    "Sources/antimony/NinjaWriter.swift",
+    "Sources/antimony/NULLExecutor.swift",
+    "Sources/antimony/SourceFile.swift",
+  ]
+
+  deps = [
+    ":BUILDParser",
+    "@swift-driver//:SwiftDriver",
+    "@swift-tools-support-core//:TSCBasic",
+  ]
+}
+
+executable("sb") {
+  sources = [
+    "Tools/sb/sb.swift",
+  ]
+
+  deps = [
+    ":antimony",
+    "@swift-argument-parser//:ArgumentParser",
+  ]
+
+  swiftflags = [
+    "-parse-as-library",
+  ]
+}

@@ -1,0 +1,15 @@
+
+executable("sb") {
+  sources = [
+    "sb.swift",
+  ]
+
+  deps = [
+    "//Sources/antimony",
+    "//third_party/swift-argument-parser/Sources/ArgumentParser",
+  ]
+
+  swiftflags = [
+    "-parse-as-library",
+  ]
+}

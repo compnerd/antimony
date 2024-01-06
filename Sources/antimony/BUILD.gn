@@ -1,0 +1,24 @@
+
+static_library("antimony") {
+  sources = [
+    "Configuration/BuildConfiguration.swift",
+    "Configuration/BuildConfigurationDelegate.swift",
+    "Configuration/BuildConfigurationOptions.swift",
+    "Configuration/Label.swift",
+    "Configuration/Loader.swift",
+    "Configuration/Target.swift",
+    "Extensions/SwiftDriver+Extensions.swift",
+    "Utils/FileURL.swift",
+    "Error.swift",
+    "JobEmitter.swift",
+    "NinjaWriter.swift",
+    "NULLExecutor.swift",
+    "SourceFile.swift",
+  ]
+
+  deps = [
+    "//Sources/BUILDEvaluator",
+    "//third_party/swift-driver/Sources/SwiftDriver",
+    "//third_party/swift-tools-support-core/Sources/TSCBasic",
+  ]
+}

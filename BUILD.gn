@@ -1,0 +1,24 @@
+
+assert(host_os == "windows", "antimony has not been ported to ${host_os}")
+
+config("windows-x86_64") {
+  swiftflags = ["-target", "x86_64-unknown-windows-msvc", "-use-ld=lld"]
+}
+
+config("macosx-aarch64") {
+  swiftflags = ["-target", "arm64-apple-macosx10.14"]
+}
+
+config("macosx-x86_64") {
+  swiftflags = ["-target", "x86_64-apple-macosx10.14"]
+}
+
+group("default") {
+  deps = [
+    "//Tools/sb",
+  ]
+
+  public_configs = [
+    ":windows-x86_64"
+  ]
+}

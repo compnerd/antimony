@@ -21,15 +21,24 @@ _ = Package(name: "antimony",
               .executableTarget(name: "sb", dependencies: [
                 "antimony",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-              ], path: "Tools/sb"),
+              ], path: "Tools/sb", exclude: [
+                "BUILD.gn",
+              ]),
               .target(name: "BUILDParser", dependencies: [
                 .product(name: "DequeModule", package: "swift-collections"),
+              ], exclude: [
+                "BUILD.gn",
               ], swiftSettings: [
                 .enableExperimentalFeature("AccessLevelOnImport"),
               ]),
               .target(name: "BUILDEvaluator", dependencies: [
+                "BUILDParser",
+              ], exclude: [
+                "BUILD.gn",
               ]),
               .target(name: "antimony", dependencies: [
                 .product(name: "SwiftDriver", package: "swift-driver"),
+              ], exclude: [
+                "BUILD.gn",
               ])
            ])

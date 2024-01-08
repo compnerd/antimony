@@ -27,6 +27,8 @@ _ = Package(name: "antimony",
               ], swiftSettings: [
                 .enableExperimentalFeature("AccessLevelOnImport"),
               ]),
+              .target(name: "BUILDEvaluator", dependencies: [
+              ]),
               .target(name: "antimony", dependencies: [
                 .product(name: "SwiftDriver", package: "swift-driver"),
               ])

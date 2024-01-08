@@ -7,6 +7,8 @@ public struct DiagnosticSet {
 
   public var empty: Bool { elements.isEmpty }
 
+  public init() {}
+
   @discardableResult
   public mutating func insert(_ diagnostic: Diagnostic) -> Bool {
     errors = errors || diagnostic.level == .error

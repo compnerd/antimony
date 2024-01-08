@@ -4,7 +4,7 @@ import PackageDescription
 
 _ = Package(name: "antimony",
             platforms: [
-              .macOS(.v12),
+              .macOS(.v13),
             ],
             products: [
               .executable(name: "sb", targets: ["sb"])

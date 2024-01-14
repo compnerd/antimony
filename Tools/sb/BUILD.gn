@@ -1,7 +1,9 @@
 
 executable("sb") {
   sources = [
+    "CLIOptions.swift",
     "sb.swift",
+    "Utils/FileURL.swift",
   ]
 
   deps = [

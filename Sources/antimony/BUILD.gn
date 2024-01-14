@@ -3,12 +3,10 @@ static_library("antimony") {
   sources = [
     "Configuration/BuildConfiguration.swift",
     "Configuration/BuildConfigurationDelegate.swift",
-    "Configuration/BuildConfigurationOptions.swift",
     "Configuration/Label.swift",
     "Configuration/Loader.swift",
     "Configuration/Target.swift",
     "Extensions/SwiftDriver+Extensions.swift",
-    "Utils/FileURL.swift",
     "Error.swift",
     "JobEmitter.swift",
     "NinjaWriter.swift",

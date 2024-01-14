@@ -1,8 +1,8 @@
 // Copyright © 2024 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3-Clause
 
-import struct Foundation.Data
-import struct Foundation.URL
+internal import struct Foundation.Data
+internal import struct Foundation.URL
 
 extension String {
   fileprivate func escapedPath() -> String {
@@ -22,7 +22,7 @@ extension String.SubSequence {
   }
 }
 
-public class NinjaWriter {
+internal class NinjaWriter {
   private var content: String
   private var width: Int
 

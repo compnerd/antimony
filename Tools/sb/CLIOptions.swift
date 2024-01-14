@@ -3,12 +3,12 @@
 
 import ArgumentParser
 
-public final class BuildConfigurationOptions: ParsableArguments {
+public struct CLIOptions: ParsableArguments {
   @Option
   var root: FileURL?
 
   @Argument(help: .init(valueName: "out_dir"))
-  var location: String
+  var out: String
 
   public init() {}
 }

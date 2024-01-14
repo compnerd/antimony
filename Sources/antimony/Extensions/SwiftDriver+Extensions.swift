@@ -1,8 +1,8 @@
 // Copyright © 2024 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3-Clause
 
-import SwiftDriver
-import TSCBasic
+internal import SwiftDriver
+internal import TSCBasic
 
 extension Array where Element == TypedVirtualPath {
   internal func paths(objdir: RelativePath, excluding: Set<String> = []) -> [String] {

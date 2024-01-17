@@ -49,6 +49,12 @@ public struct JobEmitter {
 #elseif arch(x86_64)
     let triple: String = "x86_64-unknown-linux-gnu"
 #endif
+#elseif os(macOS)
+#if arch(arm64)
+    let triple: String = "arm64-apple-macosx13.0"
+#elseif arch(x86_64)
+    let triple: String = "x86_64-apple-macosx13.0"
+#endif
 #endif
 
     let module: RelativePath =
@@ -65,7 +71,7 @@ public struct JobEmitter {
     let swiftIncludes = dependencies.filter(\.isSwiftTarget).compactMap { try? RelativePath(validating: "\($0.label.name).dir/swift") }
     let libs = dependencies.filter(\.isSwiftTarget).compactMap { libdir.appending(component: "\($0.label.name).lib").pathString }
 
-    let arguments = [
+    var arguments = [
       target.defines.map { "-D\($0)" },
       swiftIncludes.map(\.pathString).map { "-I\($0)" },
       headerIncludes.map(\.pathString).map { "-I\($0)" },
@@ -75,6 +81,11 @@ public struct JobEmitter {
       flags,
       target.isSwiftTarget ? target.flags.swift : []
     ].flatMap { $0 }
+
+    #if os(macOS)
+      let sdkPath = try DarwinToolchain(env: ProcessEnv.vars, executor: executor).defaultSDKPath(Triple(triple))!
+      arguments += ["-sdk", sdkPath.pathString]
+    #endif
 
     switch target.type {
     case .executable:

@@ -1,0 +1,48 @@
+
+static_library("TSCUtility") {
+  sources = [
+    "Archiver.swift",
+    "ArgumentParser.swift",
+    "ArgumentParserShellCompletion.swift",
+    "Bits.swift",
+    "Bitstream.swift",
+    "BitstreamReader.swift",
+    "BitstreamWriter.swift",
+    "BuildFlags.swift",
+    "CollectionExtensions.swift",
+    "Diagnostics.swift",
+    "FSWatch.swift",
+    "FloatingPointExtensions.swift",
+    "Git.swift",
+    "IndexStore.swift",
+    "InterruptHandler.swift",
+    "JSONMessageStreamingParser.swift",
+    "misc.swift",
+    "Netrc.swift",
+    "OSLog.swift",
+    "PkgConfig.swift",
+    "Platform.swift",
+    "PolymorphicCodable.swift",
+    "ProgressAnimation.swift",
+    "SerializedDiagnostics.swift",
+    "SimplePersistence.swift",
+    "StringExtensions.swift",
+    "StringMangling.swift",
+    "Triple.swift",
+    "URL.swift",
+    "Verbosity.swift",
+    "Version.swift",
+    "Versioning.swift",
+    "dlopen.swift",
+    "misc.swift"
+  ]
+
+  public_deps = [
+    "//third_party/swift-tools-support-core/Sources/TSCLibc",
+    "//third_party/swift-tools-support-core/Sources/TSCBasic",
+  ]
+
+  deps = [
+    "//third_party/swift-tools-support-core/Sources/TSCclibc",
+  ]
+}

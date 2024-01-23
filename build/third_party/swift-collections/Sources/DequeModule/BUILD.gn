@@ -1,0 +1,26 @@
+
+static_library("DequeModule") {
+  sources = [
+    "Deque+Codable.swift",
+    "Deque+Collection.swift",
+    "Deque+CustomReflectable.swift",
+    "Deque+Descriptions.swift",
+    "Deque+Equatable.swift",
+    "Deque+ExpressibleByArrayLiteral.swift",
+    "Deque+Extras.swift",
+    "Deque+Hashable.swift",
+    "Deque+Sendable.swift",
+    "Deque+Testing.swift",
+    "Deque._Storage.swift",
+    "Deque._UnsafeHandle.swift",
+    "Deque.swift",
+    "_DequeBuffer.swift",
+    "_DequeBufferHeader.swift",
+    "_DequeSlot.swift",
+    "_UnsafeWrappedBuffer.swift",
+  ]
+
+  deps = [
+    "//third_party/swift-collections/Sources/_CollectionUtilities",
+  ]
+}

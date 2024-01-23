@@ -1,0 +1,11 @@
+
+static_library("TSCclibc") {
+  sources = [
+    "libc.c",
+    "process.c",
+  ]
+
+  include_dirs = [
+    "include",
+  ]
+}

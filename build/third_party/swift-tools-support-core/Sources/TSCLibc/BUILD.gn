@@ -1,0 +1,6 @@
+
+static_library("TSCLibc") {
+  sources = [
+    "libc.swift",
+  ]
+}

@@ -1,0 +1,68 @@
+
+shared_library("TSCBasic") {
+  sources = [
+    "Await.swift",
+    "ByteString.swift",
+    "CStringArray.swift",
+    "CacheableSequence.swift",
+    "Closable.swift",
+    "CodableResult.swift",
+    "CollectionAlgorithms.swift",
+    "CollectionExtensions.swift",
+    "Condition.swift",
+    "DeltaAlgorithm.swift",
+    "DiagnosticsEngine.swift",
+    "DictionaryExtensions.swift",
+    "DictionaryLiteralExtensions.swift",
+    "EditDistance.swift",
+    "FileInfo.swift",
+    "FileSystem.swift",
+    "GraphAlgorithms.swift",
+    "HashAlgorithms.swift",
+    "JSON.swift",
+    "JSONMapper.swift",
+    "KeyedPair.swift",
+    "LazyCache.swift",
+    "Lock.swift",
+    "OSLog.swift",
+    "ObjectIdentifierProtocol.swift",
+    "OrderedDictionary.swift",
+    "OrderedSet.swift",
+    "WritableByteStream.swift",
+    "Path.swift",
+    "PathShims.swift",
+    "Process/Process.swift",
+    "Process/ProcessEnv.swift",
+    "Process/ProcessSet.swift",
+    "RegEx.swift",
+    "Result.swift",
+    "SortedArray.swift",
+    "StringConversions.swift",
+    "SynchronizedQueue.swift",
+    "TemporaryFile.swift",
+    "TerminalController.swift",
+    "Thread.swift",
+    "Tuple.swift",
+    "misc.swift",
+  ]
+
+  if (host_os == "windows") {
+    libs = [
+      "Pathcch",
+    ]
+  }
+
+  public_deps = [
+    "//third_party/swift-tools-support-core/Sources/TSCLibc",
+  ]
+
+  deps = [
+    "//third_party/swift-tools-support-core/Sources/TSCclibc"
+  ]
+
+  if (host_os == "windows") {
+    swiftflags = [
+      "-Xcc", "-D_CRT_SECURE_NO_WARNINGS",
+    ]
+  }
+}

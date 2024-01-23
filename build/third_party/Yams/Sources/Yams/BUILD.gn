@@ -1,0 +1,32 @@
+
+static_library("Yams") {
+  sources = [
+    "Constructor.swift",
+    "Decoder.swift",
+    "Emitter.swift",
+    "Encoder.swift",
+    "Mark.swift",
+    "Node.Mapping.swift",
+    "Node.Scalar.swift",
+    "Node.Sequence.swift",
+    "Node.swift",
+    "Parser.swift",
+    "Representer.swift",
+    "Resolver.swift",
+    "String+Yams.swift",
+    "Tag.swift",
+    "YamlError.swift",
+  ]
+
+  defines = [
+    "SWIFT_PACKAGE",
+  ]
+
+  private_dependencies = [
+    "//third_party/Yams/Sources/CYaml"
+  ]
+
+  swiftflags = [
+    "-Xcc", "-DYAML_DECLARE_STATIC",
+  ]
+}

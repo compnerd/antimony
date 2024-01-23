@@ -1,0 +1,3 @@
+
+assert(host_os == "win")
+set_default_toolchain("//build/toolchain:windows-x86_64")

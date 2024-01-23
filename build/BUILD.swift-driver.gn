@@ -1,0 +1,150 @@
+
+static_library("CSwiftScan") {
+  sources = [
+    "Sources/CSwiftScan/CSwiftScanImpl.c",
+  ]
+
+  include_dirs = [
+    "Sources/CSwiftScan/include"
+  ]
+}
+
+static_library("SwiftOptions") {
+  sources = [
+    "Sources/SwiftOptions/DriverKind.swift",
+    "Sources/SwiftOptions/Option.swift",
+    "Sources/SwiftOptions/OptionTable.swift",
+    "Sources/SwiftOptions/ParsedOptions.swift",
+    "Sources/SwiftOptions/OptionParsing.swift",
+    "Sources/SwiftOptions/Options.swift",
+    "Sources/SwiftOptions/PrefixTrie.swift"
+  ]
+
+  public_dependencies = [
+    "@swift-tools-support-core//:TSCBasic"
+  ]
+}
+
+shared_library("SwiftDriver") {
+  sources = [
+    "Sources/SwiftDriver/Driver/CompilerMode.swift",
+    "Sources/SwiftDriver/Driver/DebugInfo.swift",
+    "Sources/SwiftDriver/Driver/Driver.swift",
+    "Sources/SwiftDriver/Driver/LinkKind.swift",
+    "Sources/SwiftDriver/Driver/ModuleOutputInfo.swift",
+    "Sources/SwiftDriver/Driver/OutputFileMap.swift",
+    "Sources/SwiftDriver/Driver/ToolExecutionDelegate.swift",
+    "Sources/SwiftDriver/Driver/DriverVersion.swift",
+    "Sources/SwiftDriver/Driver/WindowsExtensions.swift",
+    "Sources/SwiftDriver/Execution/ArgsResolver.swift",
+    "Sources/SwiftDriver/Execution/DriverExecutor.swift",
+    "Sources/SwiftDriver/Execution/ParsableOutput.swift",
+    "Sources/SwiftDriver/Execution/ProcessProtocol.swift",
+    "Sources/SwiftDriver/ExplicitModuleBuilds/ClangVersionedDependencyResolution.swift",
+    "Sources/SwiftDriver/ExplicitModuleBuilds/ExplicitDependencyBuildPlanner.swift",
+    "Sources/SwiftDriver/ExplicitModuleBuilds/ModuleDependencyScanning.swift",
+    "Sources/SwiftDriver/ExplicitModuleBuilds/InterModuleDependencies/CommonDependencyOperations.swift",
+    "Sources/SwiftDriver/ExplicitModuleBuilds/InterModuleDependencies/InterModuleDependencyGraph.swift",
+    "Sources/SwiftDriver/ExplicitModuleBuilds/InterModuleDependencies/InterModuleDependencyOracle.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Bitcode/Bitcode.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Bitcode/BitcodeElement.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Bitcode/Bits.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Bitcode/Bitstream.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Bitcode/BitstreamReader.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Bitcode/BitstreamVisitor.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Bitcode/BitstreamWriter.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Bitcode/BlockInfo.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/BuildRecord.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/BuildRecordInfo.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/DependencyGraphDotFileWriter.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/DependencyKey.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/DirectAndTransitiveCollections.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/ExternalDependencyAndFingerprintEnforcer.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/FirstWaveComputer.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/IncrementalCompilationSynchronizer.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/IncrementalCompilationState.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/IncrementalCompilationState+Extensions.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/IncrementalCompilationProtectedState.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/IncrementalDependencyAndInputSetup.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/InputInfo.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/KeyAndFingerprintHolder.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/ModuleDependencyGraph.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/ModuleDependencyGraphParts/DependencySource.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/ModuleDependencyGraphParts/Integrator.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/ModuleDependencyGraphParts/InternedStrings.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/ModuleDependencyGraphParts/Node.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/ModuleDependencyGraphParts/NodeFinder.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/ModuleDependencyGraphParts/Tracer.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/Multidictionary.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/SwiftSourceFile.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/SourceFileDependencyGraph.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/TwoDMap.swift",
+    "Sources/SwiftDriver/IncrementalCompilation/TwoLevelMap.swift",
+    "Sources/SwiftDriver/Jobs/APIDigesterJobs.swift",
+    "Sources/SwiftDriver/Jobs/AutolinkExtractJob.swift",
+    "Sources/SwiftDriver/Jobs/BackendJob.swift",
+    "Sources/SwiftDriver/Jobs/CommandLineArguments.swift",
+    "Sources/SwiftDriver/Jobs/CompileJob.swift",
+    "Sources/SwiftDriver/Jobs/DarwinToolchain+LinkerSupport.swift",
+    "Sources/SwiftDriver/Jobs/EmitModuleJob.swift",
+    "Sources/SwiftDriver/Jobs/EmitSupportedFeaturesJob.swift",
+    "Sources/SwiftDriver/Jobs/FrontendJobHelpers.swift",
+    "Sources/SwiftDriver/Jobs/GenerateDSYMJob.swift",
+    "Sources/SwiftDriver/Jobs/GeneratePCHJob.swift",
+    "Sources/SwiftDriver/Jobs/GeneratePCMJob.swift",
+    "Sources/SwiftDriver/Jobs/GenericUnixToolchain+LinkerSupport.swift",
+    "Sources/SwiftDriver/Jobs/InterpretJob.swift",
+    "Sources/SwiftDriver/Jobs/Job.swift",
+    "Sources/SwiftDriver/Jobs/LinkJob.swift",
+    "Sources/SwiftDriver/Jobs/MergeModuleJob.swift",
+    "Sources/SwiftDriver/Jobs/ModuleWrapJob.swift",
+    "Sources/SwiftDriver/Jobs/Planning.swift",
+    "Sources/SwiftDriver/Jobs/PrintTargetInfoJob.swift",
+    "Sources/SwiftDriver/Jobs/ReplJob.swift",
+    "Sources/SwiftDriver/Jobs/SwiftHelpIntroJob.swift",
+    "Sources/SwiftDriver/Jobs/Toolchain+InterpreterSupport.swift",
+    "Sources/SwiftDriver/Jobs/Toolchain+LinkerSupport.swift",
+    "Sources/SwiftDriver/Jobs/VerifyDebugInfoJob.swift",
+    "Sources/SwiftDriver/Jobs/VerifyModuleInterfaceJob.swift",
+    "Sources/SwiftDriver/Jobs/WebAssemblyToolchain+LinkerSupport.swift",
+    "Sources/SwiftDriver/Jobs/WindowsToolchain+LinkerSupport.swift",
+    "Sources/SwiftDriver/Jobs/PrebuiltModulesJob.swift",
+    "Sources/SwiftDriver/SwiftScan/DependencyGraphBuilder.swift",
+    "Sources/SwiftDriver/SwiftScan/Loader.swift",
+    "Sources/SwiftDriver/SwiftScan/SwiftScan.swift",
+    "Sources/SwiftDriver/SwiftScan/SwiftScanCAS.swift",
+    "Sources/SwiftDriver/Toolchains/DarwinToolchain.swift",
+    "Sources/SwiftDriver/Toolchains/GenericUnixToolchain.swift",
+    "Sources/SwiftDriver/Toolchains/Toolchain.swift",
+    "Sources/SwiftDriver/Toolchains/WebAssemblyToolchain.swift",
+    "Sources/SwiftDriver/Toolchains/WindowsToolchain.swift",
+    "Sources/SwiftDriver/ToolingInterface/SimpleExecutor.swift",
+    "Sources/SwiftDriver/ToolingInterface/ToolingUtil.swift",
+    "Sources/SwiftDriver/Utilities/DOTJobGraphSerializer.swift",
+    "Sources/SwiftDriver/Utilities/DOTModuleDependencyGraphSerializer.swift",
+    "Sources/SwiftDriver/Utilities/DateAdditions.swift",
+    "Sources/SwiftDriver/Utilities/Diagnostics.swift",
+    "Sources/SwiftDriver/Utilities/FileList.swift",
+    "Sources/SwiftDriver/Utilities/FileType.swift",
+    "Sources/SwiftDriver/Utilities/PredictableRandomNumberGenerator.swift",
+    "Sources/SwiftDriver/Utilities/RelativePathAdditions.swift",
+    "Sources/SwiftDriver/Utilities/Sanitizer.swift",
+    "Sources/SwiftDriver/Utilities/StringAdditions.swift",
+    "Sources/SwiftDriver/Utilities/System.swift",
+    "Sources/SwiftDriver/Utilities/Triple+Platforms.swift",
+    "Sources/SwiftDriver/Utilities/Triple.swift",
+    "Sources/SwiftDriver/Utilities/TypedVirtualPath.swift",
+    "Sources/SwiftDriver/Utilities/Version.swift",
+    "Sources/SwiftDriver/Utilities/VirtualPath.swift",
+  ]
+
+  public_dependencies = [
+    "@swift-tools-support-core//:TSCBasic",
+    ":SwiftOptions",
+  ]
+
+  private_dependencies = [
+    "@yams//:Yams",
+    ":CSwiftScan"
+  ]
+}

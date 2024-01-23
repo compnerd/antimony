@@ -1,0 +1,10 @@
+
+static_library("CSwiftScan") {
+  sources = [
+    "CSwiftScanImpl.c",
+  ]
+
+  include_dirs = [
+    "include",
+  ]
+}

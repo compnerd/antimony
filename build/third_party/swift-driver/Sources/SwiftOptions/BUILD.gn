@@ -1,0 +1,12 @@
+
+static_library("SwiftOptions") {
+  sources = [
+    "DriverKind.swift",
+    "Option.swift",
+    "OptionTable.swift",
+    "ParsedOptions.swift",
+    "OptionParsing.swift",
+    "Options.swift",
+    "PrefixTrie.swift",
+  ]
+}

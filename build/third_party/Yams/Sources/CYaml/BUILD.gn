@@ -1,0 +1,19 @@
+
+static_library("CYaml") {
+  sources = [
+    "src/api.c",
+    "src/emitter.c",
+    "src/parser.c",
+    "src/reader.c",
+    "src/scanner.c",
+    "src/writer.c",
+  ]
+
+  defines = [
+    "YAML_DECLARE_STATIC",
+  ]
+
+  include_dirs = [
+    "include",
+  ]
+}

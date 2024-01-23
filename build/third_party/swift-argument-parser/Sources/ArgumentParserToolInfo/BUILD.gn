@@ -1,0 +1,6 @@
+
+static_library("ArgumentParserToolInfo") {
+  sources = [
+    "ToolInfo.swift",
+  ]
+}

@@ -44,5 +44,12 @@ _ = Package(name: "antimony",
                 "BUILD.gn",
               ], swiftSettings: [
                 .enableExperimentalFeature("AccessLevelOnImport"),
+              ]),
+              .testTarget(name: "AntimonyTests", dependencies: [
+                "BUILDParser",
+              ], exclude: [
+                "BUILD.gn",
+              ], swiftSettings: [
+                .enableExperimentalFeature("AccessLevelOnImport"),
               ])
            ])
